@@ -14,9 +14,16 @@ export class CourseCardComponent {
   @Input()
   course: Course;
 
+  @Input()
+  cardIndex: number;
+
   onViewCourseClick() {
     console.log('Card component - button clicked ...');
 
     this.courseSelected.emit(this.course);
+  }
+
+  isImageVisible() {
+    return this.course && this.course.iconUrl;
   }
 }
