@@ -7,13 +7,31 @@
 
 <button (click)="onCourseEdited()">EditCourses</button>
 
-<div class="courses">
+<div class="courses" *ngIf="courses[0] as course">
 
-  <course-card *ngFor="let course of courses"
-               (courseSelected)="onCourseSelected($event)"
+  <course-card (courseSelected)="onCourseSelected($event)"
                [course]="course">
 
+    <div class="course-image">
+      <img width="300" alt="Angular Logo" [src]="course.iconUrl">
+      <h5>Total Lessons: 3</h5>
+
+    </div>
+
+    <div class="course-description">
+      {{ course.longDescription }}
+    </div>
+
+    Edit description: <textarea></textarea>
+
   </course-card>
+
+  <course-card (courseSelected)="onCourseSelected($event)"
+               [course]="courses[2]">
+
+    <h5>Total Lessons: 10</h5>
+  </course-card>
+
 
 </div>
 
