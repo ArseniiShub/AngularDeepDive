@@ -1,4 +1,16 @@
-import { AfterViewInit, Component, ContentChild, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import {
+  AfterContentInit,
+  AfterViewInit,
+  Component,
+  ContentChild,
+  ContentChildren,
+  ElementRef,
+  EventEmitter,
+  Input,
+  Output,
+  QueryList,
+  ViewChild
+} from '@angular/core';
 import { Course } from '../model/course';
 import { CourseImageComponent } from '../course-image/course-image.component';
 
@@ -7,7 +19,8 @@ import { CourseImageComponent } from '../course-image/course-image.component';
   templateUrl: './course-card.component.html',
   styleUrl: './course-card.component.css'
 })
-export class CourseCardComponent implements AfterViewInit {
+export class CourseCardComponent implements AfterViewInit, AfterContentInit {
+
 
   @Output()
   courseSelected = new EventEmitter<Course>();
@@ -18,15 +31,19 @@ export class CourseCardComponent implements AfterViewInit {
   @Input()
   cardIndex: number;
 
-  @ContentChild(CourseImageComponent, { read: ElementRef })
-  image: ElementRef;
+  @ContentChildren(CourseImageComponent, { read: ElementRef })
+  images: QueryList<CourseImageComponent>;
 
   onViewCourseClick() {
     this.courseSelected.emit(this.course);
   }
 
   ngAfterViewInit(): void {
-    console.log('image:', this.image);
+  }
+
+  ngAfterContentInit(): void {
+    console.log('image:', this.images);
+
   }
 
   isImageVisible() {
