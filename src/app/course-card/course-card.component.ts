@@ -8,7 +8,7 @@ import {
   EventEmitter,
   Input,
   Output,
-  QueryList,
+  QueryList, TemplateRef,
   ViewChild
 } from '@angular/core';
 import { Course } from '../model/course';
@@ -33,6 +33,9 @@ export class CourseCardComponent implements AfterViewInit, AfterContentInit {
 
   @ContentChildren(CourseImageComponent, { read: ElementRef })
   images: QueryList<CourseImageComponent>;
+
+  @Input()
+  noImageTemplate: TemplateRef<any>;
 
   onViewCourseClick() {
     this.courseSelected.emit(this.course);
