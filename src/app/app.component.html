@@ -5,17 +5,11 @@
 
 </div>
 
-<button (click)="onCourseEdited()">EditCourses</button>
 
 <div class="courses" *ngIf="courses[0] as course">
 
-  <ng-template #blankImage let-courseName="description">
-    <p class="warn">{{ courseName }} has no image yet.</p>
-    <img src="assets/empty-image.png">
-  </ng-template>
-
   <course-card (courseSelected)="onCourseSelected($event)"
-               [course]="course" [noImageTemplate]="blankImage">
+               [course]="course">
 
     <course-image [src]="course.iconUrl"></course-image>
     <div class="course-description">

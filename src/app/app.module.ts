@@ -9,14 +9,15 @@ import { CourseImageComponent } from './course-image/course-image.component';
 @NgModule({
   declarations: [
     AppComponent,
-    CourseCardComponent
+    CourseCardComponent,
+    CourseImageComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
-    CourseImageComponent
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
