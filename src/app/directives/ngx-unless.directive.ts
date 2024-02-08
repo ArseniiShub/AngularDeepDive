@@ -1,14 +1,15 @@
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
 
 @Directive({
-  selector: '[ngxUnless]',
+  selector: '[ngxUnless]'
 })
 export class NgxUnlessDirective {
 
   visible = false;
 
-  constructor(private templateRef: TemplateRef<any>, private viewContainer: ViewContainerRef) {
 
+  constructor(private templateRef: TemplateRef<any>,
+              private viewContainer: ViewContainerRef) {
   }
 
   @Input()
@@ -16,10 +17,10 @@ export class NgxUnlessDirective {
     if (!condition && !this.visible) {
       this.viewContainer.createEmbeddedView(this.templateRef);
       this.visible = true;
-    } else if (this.visible) {
+    } else if (condition && this.visible) {
       this.viewContainer.clear();
       this.visible = false;
     }
-  }
 
+  }
 }

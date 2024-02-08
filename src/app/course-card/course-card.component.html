@@ -4,9 +4,14 @@
     {{ cardIndex || '' + ' ' + course.description }}
   </div>
 
-  <ng-content select="course-image"></ng-content>
+  <ng-content select="course-image"
+              *ngIf="course.iconUrl"></ng-content>
 
-  <ng-content select=".course-description"></ng-content>
+  <div class="course-description">
+
+    Edit Title: <input #courseTitle [value]="course.description">
+
+  </div>
 
   <div class="course-category" [ngSwitch]="course.category">
 
@@ -18,7 +23,7 @@
 
   </div>
 
-  <button (click)="onCourseViewed()">View Course</button>
+  <button (click)="onSaveClicked(courseTitle.value)">Save Course</button>
 
 </div>
 

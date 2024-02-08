@@ -17,10 +17,9 @@ import { CourseImageComponent } from '../course-image/course-image.component';
 @Component({
   selector: 'course-card',
   templateUrl: './course-card.component.html',
-  styleUrls: ['./course-card.component.css'],
-  encapsulation: ViewEncapsulation.Emulated
+  styleUrls: ['./course-card.component.css']
 })
-export class CourseCardComponent implements OnInit, AfterViewInit, AfterContentInit {
+export class CourseCardComponent implements OnInit {
 
   @Input()
   course: Course;
@@ -28,21 +27,11 @@ export class CourseCardComponent implements OnInit, AfterViewInit, AfterContentI
   @Input()
   cardIndex: number;
 
-  @Output('courseSelected')
+  @Output('courseChanged')
   courseEmitter = new EventEmitter<Course>();
 
-  @ContentChildren(CourseImageComponent, { read: ElementRef })
-  images: QueryList<ElementRef>;
 
   constructor() {
-
-  }
-
-  ngAfterViewInit() {
-
-  }
-
-  ngAfterContentInit() {
 
   }
 
@@ -50,21 +39,12 @@ export class CourseCardComponent implements OnInit, AfterViewInit, AfterContentI
 
   }
 
-  isImageVisible() {
-    return this.course && this.course.iconUrl;
+
+  onSaveClicked(description: string) {
+
+    this.courseEmitter.emit({ ...this.course, description });
+
   }
 
-  onCourseViewed() {
-    this.courseEmitter.emit(this.course);
-  }
 
-  cardClasses() {
-    if (this.course.category === 'BEGINNER') {
-      return 'beginner';
-    }
-  }
-
-  cardStyles() {
-    return { 'background-image': 'url(' + this.course.iconUrl + ')' };
-  }
 }

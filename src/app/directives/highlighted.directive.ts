@@ -6,30 +6,34 @@ import { Directive, EventEmitter, HostBinding, HostListener, Input, Output } fro
 })
 export class HighlightedDirective {
 
-  constructor() {
-    console.log('Directive created!');
-  }
+  @Input('highlighted')
+  isHighlighted = false;
 
   @Output()
   toggleHighlight = new EventEmitter();
 
-  @Input('highlighted')
-  isHighlighted = false;
+  constructor() {
+
+    console.log('Directive created..');
+
+  }
 
   @HostBinding('class.highlighted')
   get cssClasses() {
     return this.isHighlighted;
   }
 
-  @HostListener('mouseover')
-  mouseOver() {
+  @HostListener('mouseover', ['$event'])
+  mouseOver($event) {
+
+    console.log($event);
+
     this.isHighlighted = true;
     this.toggleHighlight.emit(this.isHighlighted);
   }
 
-  @HostListener('mouseleave', ['$event'])
-  mouseLeave($event) {
-    console.log($event);
+  @HostListener('mouseleave')
+  mouseLeave() {
     this.isHighlighted = false;
     this.toggleHighlight.emit(this.isHighlighted);
   }
