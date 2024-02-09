@@ -4,11 +4,11 @@ import {
   Component,
   ContentChildren,
   ElementRef,
-  EventEmitter,
+  EventEmitter, Inject,
   Input,
-  OnInit,
+  OnInit, Optional,
   Output,
-  QueryList,
+  QueryList, Self, SkipSelf,
   ViewEncapsulation
 } from '@angular/core';
 import { Course } from '../model/course';
@@ -18,7 +18,8 @@ import { CoursesService } from '../services/courses.service';
 @Component({
   selector: 'course-card',
   templateUrl: './course-card.component.html',
-  styleUrls: ['./course-card.component.css']
+  styleUrls: ['./course-card.component.css'],
+  providers: [CoursesService]
 })
 export class CourseCardComponent implements OnInit {
 
@@ -31,7 +32,7 @@ export class CourseCardComponent implements OnInit {
   @Output('courseChanged')
   courseEmitter = new EventEmitter<Course>();
 
-  constructor(private coursesService: CoursesService) {
+  constructor(@SkipSelf() private coursesService: CoursesService) {
   }
 
   ngOnInit() {
