@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
   }
 
   onEditCourse() {
-    this.courses = [undefined];
+    console.log('Switched to ADVANCED');
+    this.courses[1].category = 'ADVANCED';
   }
 }
