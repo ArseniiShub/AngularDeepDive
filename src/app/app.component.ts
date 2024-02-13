@@ -1,9 +1,8 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, Inject, OnInit } from '@angular/core';
 import { Course } from './model/course';
-import { Observable } from 'rxjs';
-import { CoursesService } from './services/courses.service';
 import { AppConfig, CONFIG_TOKEN } from './config';
 import { COURSES } from '../db-data';
+import { CoursesService } from './courses/services/courses.service';
+import { Component, Inject, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -19,9 +18,9 @@ export class AppComponent implements OnInit {
   }
 
   async ngOnInit() {
-  //   this.coursesService.loadCourses().subscribe((val) => {
-  //     this.courses = val;
-  //   });
+    //   this.coursesService.loadCourses().subscribe((val) => {
+    //     this.courses = val;
+    //   });
   }
 
   save(course: Course) {

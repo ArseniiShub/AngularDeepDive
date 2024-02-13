@@ -1,5 +1,5 @@
 import { Attribute, ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output, SkipSelf } from '@angular/core';
-import { Course } from '../model/course';
+import { Course } from '../../model/course';
 import { CoursesService } from '../services/courses.service';
 
 @Component({
