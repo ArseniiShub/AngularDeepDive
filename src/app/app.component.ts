@@ -2,7 +2,9 @@ import { Course } from './model/course';
 import { AppConfig, CONFIG_TOKEN } from './config';
 import { COURSES } from '../db-data';
 import { CoursesService } from './courses/services/courses.service';
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, Injector, OnInit } from '@angular/core';
+import { createCustomElement } from '@angular/elements';
+import { CourseTitleComponent } from './course-title/course-title.component';
 
 @Component({
   selector: 'app-root',
@@ -14,13 +16,13 @@ export class AppComponent implements OnInit {
 
   constructor(
     private coursesService: CoursesService,
-    @Inject(CONFIG_TOKEN) private appConfig: AppConfig) {
+    @Inject(CONFIG_TOKEN) private appConfig: AppConfig,
+    private injector: Injector) {
   }
 
   async ngOnInit() {
-    //   this.coursesService.loadCourses().subscribe((val) => {
-    //     this.courses = val;
-    //   });
+    const htmlElement = createCustomElement(CourseTitleComponent, { injector: this.injector });
+    customElements.define('course-title', htmlElement);
   }
 
   save(course: Course) {
